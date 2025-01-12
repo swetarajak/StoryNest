@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { createHmac, randomBytes } from 'crypto';
+import { builtinModules } from "module";
 const userSchema = new mongoose.Schema(
   {
     fullName: {
@@ -46,6 +47,7 @@ userSchema.pre('save', function(next){
     this.password = hashedPassword;
 
     next();
-})
+});
 
-export const User = mongoose.model('user', userSchema);
+const User = mongoose.model('user', userSchema);
+export default User;
